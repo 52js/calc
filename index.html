@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>计算器</title>
+    <style>
+      html {
+        font-size: calc(100 * 100vw / 720);
+      }
+      h1 {
+        font-size: 0.3rem;
+        text-align: center;
+      }
+      .input {
+        margin: 0;
+        width: 6rem;
+        min-height: 0.6rem;
+        max-height: 6rem;
+        height: 0.5rem;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0.3rem;
+        outline: 0;
+        line-height: 0.6rem;
+        word-wrap: break-word;
+        overflow-x: hidden;
+        overflow-y: auto;
+        border: 0.05rem solid #000;
+        background: none;
+        font-size: 0.5rem;
+        color: black;
+        border-color: rgba(82, 168, 236, 0.8);
+        box-shadow: inset 0 0.01rem 0.05rem rgba(0, 0, 0, 0.1),
+          0 0 0.08rem rgba(82, 168, 236, 0.6);
+      }
+
+      .input:focus,
+      .input:valid {
+        outline: none;
+        --angle: 0deg;
+        border-bottom: 0.05rem solid;
+        border-image: conic-gradient(
+            from var(--angle),
+            red,
+            yellow,
+            lime,
+            aqua,
+            blue,
+            magenta,
+            red
+          )
+          1;
+        animation: 3s rotate9234 linear infinite;
+      }
+
+      @keyframes rotate9234 {
+        to {
+          --angle: 360deg;
+        }
+      }
+
+      @property --angle {
+        syntax: '<angle>';
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      .btns {
+        margin-top: 0.1rem;
+        width: 100vw;
+        height: auto;
+        display: flex;
+        justify-content: space-evenly;
+      }
+
+      .btn-donate {
+        --clr-font-main: hsla(0 0% 20% / 100);
+        --btn-bg-1: hsla(194 100% 69% / 1);
+        --btn-bg-2: hsla(217 100% 56% / 1);
+        --btn-bg-color: hsla(360 100% 100% / 1);
+        --radii: 0.5em;
+        cursor: pointer;
+        padding: 0.9em 1.4em;
+        min-width: 120px;
+        min-height: 44px;
+        font-size: var(--size, 0.2rem);
+        font-family: 'Segoe UI', system-ui, sans-serif;
+        font-weight: 500;
+        -webkit-transition: 0.8s;
+        transition: 0.8s;
+        background-size: 280% auto;
+        background-image: linear-gradient(
+          325deg,
+          var(--btn-bg-2) 0%,
+          var(--btn-bg-1) 55%,
+          var(--btn-bg-2) 90%
+        );
+        border: none;
+        border-radius: var(--radii);
+        color: var(--btn-bg-color);
+        -webkit-box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5),
+          0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+          inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+          inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+        box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5),
+          0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+          inset 4px 4px 8px rgba(175, 230, 255, 0.5),
+          inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+      }
+
+      .btn-donate:hover {
+        background-position: right top;
+      }
+
+      .btn-donate:is(:focus, :focus-within, :active) {
+        outline: none;
+        -webkit-box-shadow: 0 0 0 3px var(--btn-bg-color),
+          0 0 0 6px var(--btn-bg-2);
+        box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .btn-donate {
+          -webkit-transition: linear;
+          transition: linear;
+        }
+      }
+
+      p {
+        margin-left: 0.3rem;
+        font-size: 0.5rem;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="javascript:;"><h1>计算器</h1></a>
+    <div class="input" contenteditable="true"><br /></div>
+    <div class="btns">
+      <button id="calculate" class="btn-donate">计算</button>
+
+      <button id="copyEvery" class="btn-donate">复制算式和答案</button>
+      <button id="copyResult" class="btn-donate">复制答案</button>
+    </div>
+    <p></p>
+    <script>
+      window.onload = function () {
+        const [official, calculate, copyEvery, copyResult, result] = [
+          document.querySelector('.input'),
+          document.querySelector('#calculate'),
+          document.querySelector('#copyEvery'),
+          document.querySelector('#copyResult'),
+          document.querySelector('p'),
+        ]
+
+        let calculationResults = null
+        calculate.addEventListener('click', function () {
+          calculationResults = eval(
+            official.textContent
+              .replace(/\/-/gm, '(')
+              .replace(/-\//gm, ')')
+              .replace(/×/gm, '*')
+              .replace(/÷/gm, '/')
+              .replace(/（/gm, '(')
+              .replace(/）/gm, ')')
+              .replace(/[，,。]/gm, '.')
+              .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
+          )
+          official.textContent = official.textContent
+            .replace(/\/-/gm, '(')
+            .replace(/-\//gm, ')')
+            .replace(/\*/gm, '×')
+            .replace(/\//gm, '÷')
+            .replace(/（/gm, '(')
+            .replace(/）/gm, ')')
+            .replace(/[，,。]/gm, '.')
+            .replace(/\s+/gm, '')
+            .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
+          result.textContent = `计算结果为：${calculationResults}`
+        })
+
+        // 点击复制算式和答案
+        copyEvery.addEventListener('click', function () {
+          var textarea = document.createElement('textarea')
+          document.body.appendChild(textarea)
+          // 隐藏此输入框
+          textarea.style.position = 'absolute'
+          textarea.style.clip = 'rect(0 0 0 0)'
+          // 赋值
+          textarea.textContent = `${official.textContent}=${calculationResults}`
+          // 选中
+          textarea.select()
+          // 复制
+          document.execCommand('copy', true)
+
+          this.textContent = '复制成功'
+          setTimeout(() => {
+            this.textContent = '复制算式和答案'
+          }, 3000)
+        })
+
+        // 点击答案
+        copyResult.addEventListener('click', function () {
+          var textarea = document.createElement('textarea')
+          document.body.appendChild(textarea)
+          // 隐藏此输入框
+          textarea.style.position = 'absolute'
+          textarea.style.clip = 'rect(0 0 0 0)'
+          // 赋值
+          textarea.textContent = calculationResults
+          // 选中
+          textarea.select()
+          // 复制
+          document.execCommand('copy', true)
+
+          this.textContent = '复制成功'
+          setTimeout(() => {
+            this.textContent = '答案'
+          }, 3000)
+        })
+      }
+    </script>
+  </body>
+</html>
