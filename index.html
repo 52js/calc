@@ -135,6 +135,17 @@
         margin-left: 0.3rem;
         font-size: 0.5rem;
       }
+
+      .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: .04rem;
+        background-color: #2f2f2f;
+        color: #fff;
+        font-size: .2em;
+      }
     </style>
   </head>
   <body>
@@ -147,6 +158,9 @@
       <button id="copyResult" class="btn-donate">复制答案</button>
     </div>
     <p></p>
+     <a href="https://github.com/52js">
+      <div class="footer">Copyright © 2023 52js, 川少. All rights reserved. </div>
+    </a>
     <script>
       window.onload = function () {
         const [official, calculate, copyEvery, copyResult, result] = [
