@@ -9,7 +9,10 @@
       html {
         font-size: calc(100 * 100vw / 720);
       }
-      h1 {
+      a {
+        text-decoration: none;
+      }
+      a h1 {
         font-size: 0.3rem;
         text-align: center;
       }
@@ -135,7 +138,7 @@
     </style>
   </head>
   <body>
-    <a href="javascript:;"><h1>计算器</h1></a>
+    <a href="https://github.com/52js/calc"><h1>计算器（点我查看使用说明）</h1></a>
     <div class="input" contenteditable="true"><br /></div>
     <div class="btns">
       <button id="calculate" class="btn-donate">计算</button>
@@ -155,29 +158,35 @@
         ]
 
         let calculationResults = null
+        /* 计算 */
         calculate.addEventListener('click', function () {
-          calculationResults = eval(
-            official.textContent
+          try {
+            calculationResults = eval(
+              official.textContent
+                .replace(/\/-/gm, '(')
+                .replace(/-\//gm, ')')
+                .replace(/×/gm, '*')
+                .replace(/÷/gm, '/')
+                .replace(/（/gm, '(')
+                .replace(/）/gm, ')')
+                .replace(/[，,。]/gm, '.')
+                .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
+            )
+
+            official.textContent = official.textContent
               .replace(/\/-/gm, '(')
               .replace(/-\//gm, ')')
-              .replace(/×/gm, '*')
-              .replace(/÷/gm, '/')
+              .replace(/\*/gm, '×')
+              .replace(/\//gm, '÷')
               .replace(/（/gm, '(')
               .replace(/）/gm, ')')
               .replace(/[，,。]/gm, '.')
+              .replace(/\s+/gm, '')
               .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
-          )
-          official.textContent = official.textContent
-            .replace(/\/-/gm, '(')
-            .replace(/-\//gm, ')')
-            .replace(/\*/gm, '×')
-            .replace(/\//gm, '÷')
-            .replace(/（/gm, '(')
-            .replace(/）/gm, ')')
-            .replace(/[，,。]/gm, '.')
-            .replace(/\s+/gm, '')
-            .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
-          result.textContent = `计算结果为：${calculationResults}`
+            result.textContent = `计算结果为：${calculationResults}`
+          } catch (error) {
+            result.textContent = '算式输入错误，请重新输入'
+          }
         })
 
         // 点击复制算式和答案
