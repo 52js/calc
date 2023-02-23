@@ -1,12 +1,14 @@
 window.onload = function () {
-  const [official, calculate, copyEvery, copyResult, result, Copyright] = [
-    document.querySelector('.input'),
-    document.querySelector('#calculate'),
-    document.querySelector('#copyEvery'),
-    document.querySelector('#copyResult'),
-    document.querySelector('p'),
-    document.querySelector('#Copyright'),
-  ]
+  const [official, calculate, copyEvery, copyResult, clear, result, Copyright] =
+    [
+      document.querySelector('.input'),
+      document.querySelector('#calculate'),
+      document.querySelector('#copyEvery'),
+      document.querySelector('#copyResult'),
+      document.querySelector('#clear'),
+      document.querySelector('p'),
+      document.querySelector('#Copyright'),
+    ]
 
   let calculationResults = null
   /* 计算 */
@@ -80,6 +82,12 @@ window.onload = function () {
     setTimeout(() => {
       this.textContent = '答案'
     }, 3000)
+  })
+
+  // 点击清空
+  clear.addEventListener('click', function () {
+    official.textContent = ''
+    result.textContent = ''
   })
 
   /* 按回车计算 */
