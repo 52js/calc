@@ -97,7 +97,7 @@ a h1 {
   color: #fff;
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   html {
     font-size: calc(100 * 100vw / 720);
   }
@@ -132,8 +132,8 @@ a h1 {
   .btn-donate {
     --radii: 0.5em;
     padding: 0.9em 1.4em;
-    min-width: 120px;
-    min-height: 44px;
+    min-width: .001rem;
+    min-height: .001rem;
     font-size: var(--size, 0.2rem);
   }
 
@@ -148,7 +148,7 @@ a h1 {
   }
 }
 
-@media (min-width: 680px) {
+@media (min-width: 768px) {
   .content {
     top: 80px;
   }
