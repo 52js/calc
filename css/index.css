@@ -1,0 +1,248 @@
+a {
+  text-decoration: none;
+}
+@media (max-width: 600px) {
+  html {
+    font-size: calc(100 * 100vw / 720);
+  }
+  a h1 {
+    font-size: 0.3rem;
+    text-align: center;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    position: absolute;
+    top: 1rem;
+    z-index: 1;
+  }
+
+  .input {
+    width: 95%;
+    outline: 0;
+    border: 0.05rem solid #a0b3d6;
+    font-size: 0.4rem;
+    line-height: 0.5rem;
+    padding: 0.05rem;
+    word-wrap: break-word;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-color: rgba(82, 168, 236, 0.8);
+    box-shadow: inset 0 0.01rem 0.03rem rgba(0, 0, 0, 0.1), 0 0 0.08rem rgba(82, 168, 236, 0.6);
+  }
+
+  .input:focus,
+  .input:valid {
+    outline: none;
+    --angle: 0deg;
+    border-bottom: 0.05rem solid;
+    border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    animation: 3s rotate9234 linear infinite;
+  }
+
+  @keyframes rotate9234 {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .btns {
+    margin-top: 0.1rem;
+    width: 100vw;
+    height: auto;
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  .btn-donate {
+    --clr-font-main: hsla(0 0% 20% / 100);
+    --btn-bg-1: hsla(194 100% 69% / 1);
+    --btn-bg-2: hsla(217 100% 56% / 1);
+    --btn-bg-color: hsla(360 100% 100% / 1);
+    --radii: 0.5em;
+    cursor: pointer;
+    padding: 0.9em 1.4em;
+    min-width: 120px;
+    min-height: 44px;
+    font-size: var(--size, 0.2rem);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    -webkit-box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+      inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+    box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+      inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+  }
+
+  .btn-donate:hover {
+    background-position: right top;
+  }
+
+  .btn-donate:is(:focus, :focus-within, :active) {
+    outline: none;
+    -webkit-box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+    box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-donate {
+      -webkit-transition: linear;
+      transition: linear;
+    }
+  }
+
+  p {
+    margin-left: 0.3rem;
+    font-size: 0.5rem;
+  }
+
+  .footer {
+    float: left;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 0.04rem;
+    background-color: #2f2f2f;
+    color: #fff;
+    font-size: 0.2em;
+  }
+}
+
+@media (min-width: 600px) {
+  a h1 {
+    text-align: center;
+  }
+
+  .content {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+  }
+
+  .input {
+      width: 95%; 
+      min-height: 20px; 
+      max-height: 300px;
+      height: 120px; 
+      margin-left: auto; 
+      margin-right: auto; 
+      padding: 3px; 
+      outline: 0; 
+      border: 3px solid #a0b3d6; 
+      line-height: 24px;
+      padding: 2px;
+      word-wrap: break-word;
+      overflow-x: hidden;
+      overflow-y: auto;
+  
+      border-color: rgba(82, 168, 236, 0.8);
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1), 0 0 8px rgba(82, 168, 236, 0.6);
+  }
+
+  .input:focus,
+  .input:valid {
+    outline: none;
+    --angle: 0deg;
+    border-bottom: 5px solid;
+    border-image: conic-gradient(from var(--angle), red, yellow, lime, aqua, blue, magenta, red) 1;
+    animation: 3s rotate9234 linear infinite;
+  }
+
+  @keyframes rotate9234 {
+    to {
+      --angle: 360deg;
+    }
+  }
+
+  @property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .btns {
+    margin-top: 10px;
+    width: 100vw;
+    height: auto;
+    margin-left: 5px;
+  }
+
+  .btn-donate {
+    --clr-font-main: hsla(0 0% 20% / 100);
+    --btn-bg-1: hsla(194 100% 69% / 1);
+    --btn-bg-2: hsla(217 100% 56% / 1);
+    --btn-bg-color: hsla(360 100% 100% / 1);
+    --radii: 5px;
+    cursor: pointer;
+    padding: 0.9em 1.4em;
+    min-width: 120px;
+    min-height: 44px;
+    font-size: var(--size, 20px);
+    font-family: "Segoe UI", system-ui, sans-serif;
+    font-weight: 500;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    background-size: 280% auto;
+    background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+    border: none;
+    border-radius: var(--radii);
+    color: var(--btn-bg-color);
+    -webkit-box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+      inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+    box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25),
+      inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+      margin-left: 20px;
+  }
+
+  .btn-donate:hover {
+    background-position: right top;
+  }
+
+  .btn-donate:is(:focus, :focus-within, :active) {
+    outline: none;
+    -webkit-box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+    box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-donate {
+      -webkit-transition: linear;
+      transition: linear;
+    }
+  }
+
+  p {
+    margin-left: 30px;
+    font-size: 50px;
+  }
+
+  .footer {
+    float: left;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 4px;
+    background-color: #2f2f2f;
+    color: #fff;
+    font-size: 20px;
+  }
+}
