@@ -38,7 +38,6 @@ window.onload = function () {
           .replace(/\s+/gm, '')
           .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
         result.textContent = `计算结果为：${calculationResults}`
-        Copyright.style = 'display:none'
       } catch (error) {
         result.textContent = '算式输入错误，请重新输入'
       }
