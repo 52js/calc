@@ -10,7 +10,7 @@ window.onload = function () {
       document.querySelector('#Copyright'),
     ]
 
-  let calculationResults = null
+  official.textContent = atob(localStorage.equation ?? '')
   /* 计算 */
   calculate.addEventListener('click', function () {
     if (official.textContent.length != 0) {
@@ -41,6 +41,8 @@ window.onload = function () {
       } catch (error) {
         result.textContent = '算式输入错误，请重新输入'
       }
+      
+      localStorage.equation = btoa(official.textContent)
     }
   })
 
@@ -121,5 +123,7 @@ window.onload = function () {
         result.textContent = '算式输入错误，请重新输入'
       }
     }
+
+    localStorage.equation = btoa(official.textContent)
   })
 }
