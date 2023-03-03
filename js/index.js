@@ -89,6 +89,7 @@ window.onload = function () {
   clear.addEventListener('click', function () {
     official.textContent = ''
     result.textContent = ''
+    localStorage.equation = ''
   })
 
   /* 按回车计算 */
