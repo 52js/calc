@@ -11,7 +11,39 @@ window.onload = function () {
     ]
 
   official.textContent = atob(localStorage.equation ?? '')
-  /* 计算 */
+
+  // 第一次进入网页计算一次
+  if (official.textContent.length != 0) {
+    try {
+      calculationResults = eval(
+        official.textContent
+          .replace(/\/-/gm, '(')
+          .replace(/-\//gm, ')')
+          .replace(/×/gm, '*')
+          .replace(/÷/gm, '/')
+          .replace(/（/gm, '(')
+          .replace(/）/gm, ')')
+          .replace(/[，,。]/gm, '.')
+          .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
+      )
+
+      official.textContent = official.textContent
+        .replace(/\/-/gm, '(')
+        .replace(/-\//gm, ')')
+        .replace(/\*/gm, '×')
+        .replace(/\//gm, '÷')
+        .replace(/（/gm, '(')
+        .replace(/）/gm, ')')
+        .replace(/[，,。]/gm, '.')
+        .replace(/\s+/gm, '')
+        .replace(/=(\n+)?([0-9.\n]+)?/gm, '')
+      result.textContent = `计算结果为：${calculationResults}`
+    } catch (error) {
+      result.textContent = '算式输入错误，请重新输入'
+    }
+  }
+
+  /* 点击按钮计算 */
   calculate.addEventListener('click', function () {
     if (official.textContent.length != 0) {
       try {
@@ -41,7 +73,7 @@ window.onload = function () {
       } catch (error) {
         result.textContent = '算式输入错误，请重新输入'
       }
-      
+
       localStorage.equation = btoa(official.textContent)
     }
   })
