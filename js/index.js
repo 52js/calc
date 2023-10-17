@@ -113,7 +113,7 @@ window.onload = function () {
     document.execCommand('copy', true)
     this.textContent = '复制成功'
     setTimeout(() => {
-      this.textContent = '答案'
+      this.textContent = '复制答案'
     }, 3000)
   })
 
